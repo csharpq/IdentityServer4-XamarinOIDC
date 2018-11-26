@@ -34,7 +34,12 @@ namespace XamarinOIDC
                 RedirectUri = "xamarinformsoidc://callback", 
                 Browser = browser,
 
-                ResponseMode = OidcClientOptions.AuthorizeResponseMode.Redirect
+                ResponseMode = OidcClientOptions.AuthorizeResponseMode.Redirect,
+                 // RequiredHttps default is true. Remove this Policy if Https is required
+                Policy = new Policy()
+                {
+                    Discovery = new DiscoveryPolicy { RequireHttps = false }
+                }
             };
 
             _client = new OidcClient(options);
